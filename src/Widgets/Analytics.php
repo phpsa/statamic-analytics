@@ -8,6 +8,9 @@ use Statamic\Widgets\Widget;
 use Statamic\Exceptions\MethodNotFoundException;
 use Spatie\Analytics\AnalyticsFacade as GAnalytics;
 
+/**
+ * Widgets collection stored in here
+ */
 class Analytics extends Widget
 {
 
@@ -37,7 +40,7 @@ class Analytics extends Widget
     }
 
 
-    public function totalVisitorsAndPageViews()
+    protected function totalVisitorsAndPageViews()
     {
         $data = $message = null;
         $period = Period::days($this->config('days', 10));
@@ -51,7 +54,8 @@ class Analytics extends Widget
 
         return view('phpsa-analytics::widgets.total-vistitors-and-page', ['data' => $data->reverse(), 'message' => $message]);
     }
-    public function topReferrers()
+
+    protected function topReferrers()
     {
         $data = $message = null;
         $period = Period::days($this->config('days', 7));
@@ -66,7 +70,7 @@ class Analytics extends Widget
         return view('phpsa-analytics::widgets.top-referrers', ['data' => $data, 'message' => $message]);
     }
 
-    public function topBrowsers()
+    protected function topBrowsers()
     {
         $data = $message = null;
         $period = Period::days($this->config('days', 7));
@@ -81,7 +85,7 @@ class Analytics extends Widget
         return view('phpsa-analytics::widgets.top-browsers', ['data' => $data, 'message' => $message]);
     }
 
-    public function mostVisitedPages()
+    protected function mostVisitedPages()
     {
 
         $data = $message = null;

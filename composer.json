@@ -4,7 +4,8 @@
     "license": "MIT",
     "keywords": [
         "statamic",
-        "analytics"
+        "analytics",
+        "widget"
     ],
     "type": "library",
     "authors": [
@@ -36,11 +37,8 @@
     },
     "extra": {
         "statamic": {
-            "name": "Simple Analytics Addon",
-            "description": "A Statamic 3 addon for a analytics, almost ready for testing.",
-            "editions": [
-                "pro"
-            ]
+            "name": "Statamic Google Analytics Addon",
+            "description": "A Statamic 3 addon for a analytics, almost ready for testing."
         },
         "laravel": {
             "providers": [
