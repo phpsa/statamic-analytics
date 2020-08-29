@@ -40,6 +40,8 @@ eg: `
 ]
 ```
 
+<img src="./example.png">
+
 ## Advanced documentation
 
 [Laravel Analytics](https://github.com/spatie/laravel-analytics)
