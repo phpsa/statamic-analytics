@@ -40,6 +40,7 @@ eg: `
 ]
 ```
 
+
 ## Advanced documentation
 
 [Laravel Analytics](https://github.com/spatie/laravel-analytics)
