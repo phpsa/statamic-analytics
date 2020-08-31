@@ -40,7 +40,7 @@ eg: `
 ]
 ```
 
-<img src="./example.png">
+<img src="https://github.com/phpsa/statamic-analytics/raw/master/example.png" alt="Statamic Analytics example screenshot">
 
 ## Advanced documentation
 
