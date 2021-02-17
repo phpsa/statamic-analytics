@@ -1,54 +1,54 @@
 {
-    "name": "phpsa/statamic-analytics",
-    "description": "A statamic analytics dashboard",
-    "license": "MIT",
-    "keywords": [
-        "statamic",
-        "analytics",
-        "widget"
-    ],
-    "type": "library",
-    "authors": [
-        {
-            "name": "Craig Smith",
-            "email": "vxdhost@gmail.com"
-        }
-    ],
-    "require": {
-        "statamic/cms": "^3.0",
-        "spatie/laravel-analytics": "^3.10.0"
-    },
-    "require-dev": {
-        "orchestra/testbench": "^4.0|^5.0",
-        "phpunit/phpunit": "^8.4|^9.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "Phpsa\\StatamicAnalytics\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Phpsa\\StatamicAnalytics\\Tests\\": "tests"
-        }
-    },
-    "scripts": {
-        "phpunit": "phpunit"
-    },
-    "extra": {
-        "statamic": {
-            "name": "Statamic Google Analytics Addon",
-            "description": "A Statamic 3 addon for a analytics, almost ready for testing."
-        },
-        "laravel": {
-            "providers": [
-                "Phpsa\\StatamicAnalytics\\ServiceProvider"
-            ]
-        }
-    },
-    "config": {
-        "preferred-install": "dist",
-        "sort-packages": true,
-        "optimize-autoloader": true
+  "name": "phpsa/statamic-analytics",
+  "description": "A statamic analytics dashboard",
+  "license": "MIT",
+  "keywords": [
+    "statamic",
+    "analytics",
+    "widget"
+  ],
+  "type": "library",
+  "authors": [
+    {
+      "name": "Craig Smith",
+      "email": "vxdhost@gmail.com"
     }
+  ],
+  "require": {
+    "statamic/cms": "^3.0",
+    "spatie/laravel-analytics": "^3.10.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^4.0|^5.0|^6.0",
+    "phpunit/phpunit": "^8.4|^9.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Phpsa\\StatamicAnalytics\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Phpsa\\StatamicAnalytics\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "phpunit": "phpunit"
+  },
+  "extra": {
+    "statamic": {
+      "name": "Statamic Google Analytics Addon",
+      "description": "A Statamic 3 addon for a analytics, almost ready for testing."
+    },
+    "laravel": {
+      "providers": [
+        "Phpsa\\StatamicAnalytics\\ServiceProvider"
+      ]
+    }
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "optimize-autoloader": true
+  }
 }
