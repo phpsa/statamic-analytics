@@ -9,45 +9,45 @@
         </p>
         @endif
         @if ($data)
-        @switch($config['display'])
+        @switch($config['display'] ?? 'table')
         @case('bar-chart')
         @case('bar')
-        <bar-chart :chartdata="tbChartData" :options="tbChartOptions" />
+        <bar-chart :chartdata="tbChartData" />
         @break
 
         @case('line-chart')
         @case('line')
-        <line-chart :chartdata="tbChartData" :options="tbChartOptions" />
+        <line-chart :chartdata="tbChartData" />
         @break
 
         @case('pie-chart')
         @case('pie')
-        <pie-chart :chartdata="tbChartData" :options="tbChartOptions" />
+        <pie-chart :chartdata="tbChartData" />
         @break
 
         @case('doughnut-chart')
         @case('doughnut')
-        <doughnut-chart :chartdata="tbChartData" :options="tbChartOptions" />
+        <doughnut-chart :chartdata="tbChartData" />
         @break
 
         @case('radar-chart')
         @case('radar')
-        <radar-chart :chartdata="tbChartData" :options="tbChartOptions" />
+        <radar-chart :chartdata="tbChartData" />
         @break
 
         @case('polar-chart')
         @case('polar')
-        <polar-chart :chartdata="tbChartData" :options="tbChartOptions" />
+        <polar-chart :chartdata="tbChartData" />
         @break
 
         @case('bubble-chart')
         @case('bubble')
-        <bubble-chart :chartdata="tbChartData" :options="tbChartOptions" />
+        <bubble-chart :chartdata="tbChartData" />
         @break
 
         @case('scatter-chart')
         @case('scatter')
-        <scatter-chart :chartdata="tbChartData" :options="tbChartOptions" />
+        <scatter-chart :chartdata="tbChartData" />
         @break
 
         @default
@@ -82,17 +82,11 @@
     const tbChartData = {
         labels: {!! json_encode($data-> pluck("browser")) !!},
     datasets: [{
+
         label: "{{ __('statamic-analytics::messages.top-browsers-header', ['days' => $config['days'] ?? 7 ]) }}",
         data: {!! json_encode($data -> pluck("sessions"))!!},
 
         }]
         };
-
-
-    const tbChartOptions = {
-        responsive: true,
-        maintainAspectRatio: false
-    };
-
 
 </script>

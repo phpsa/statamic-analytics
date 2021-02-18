@@ -11,45 +11,45 @@
 
         @if ($data)
 
-        @switch($config['display'])
+        @switch($config['display'] ?? 'table')
         @case('bar-chart')
         @case('bar')
-        <bar-chart :chartdata="tcChartData" :options="tcChartOptions" />
+        <bar-chart :chartdata="tcChartData"  />
         @break
 
         @case('line-chart')
         @case('line')
-        <line-chart :chartdata="tcChartData" :options="tcChartOptions" />
+        <line-chart :chartdata="tcChartData"  />
         @break
 
         @case('pie-chart')
         @case('pie')
-        <pie-chart :chartdata="tcChartData" :options="tcChartOptions" />
+        <pie-chart :chartdata="tcChartData"  />
         @break
 
         @case('doughnut-chart')
         @case('doughnut')
-        <doughnut-chart :chartdata="tcChartData" :options="tcChartOptions" />
+        <doughnut-chart :chartdata="tcChartData"  />
         @break
 
         @case('radar-chart')
         @case('radar')
-        <radar-chart :chartdata="tcChartData" :options="tcChartOptions" />
+        <radar-chart :chartdata="tcChartData"  />
         @break
 
         @case('polar-chart')
         @case('polar')
-        <polar-chart :chartdata="tcChartData" :options="tcChartOptions" />
+        <polar-chart :chartdata="tcChartData"  />
         @break
 
         @case('bubble-chart')
         @case('bubble')
-        <bubble-chart :chartdata="tcChartData" :options="tcChartOptions" />
+        <bubble-chart :chartdata="tcChartData"  />
         @break
 
         @case('scatter-chart')
         @case('scatter')
-        <scatter-chart :chartdata="tcChartData" :options="tcChartOptions" />
+        <scatter-chart :chartdata="tcChartData"  />
         @break
 
 
@@ -91,19 +91,14 @@
 
 <script>
     const tcChartData = {
-        labels: {!! json_encode($data-> pluck("country")) !!},
+        labels: {!! json_encode($data->pluck("country")) !!},
     datasets: [{
         label: "{{ __('statamic-analytics::messages.top-countries-header', ['days' => $config['days'] ?? 30 ]) }}",
-        data: {!! json_encode($data -> pluck("sessions"))!!},
+        data: {!! json_encode($data->pluck("sessions"))!!},
 
         }]
         };
 
-
-    const tcChartOptions = {
-        responsive: true,
-        maintainAspectRatio: false
-    };
 
 
 </script>

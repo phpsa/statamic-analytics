@@ -53,7 +53,7 @@ class Analytics extends Widget
         }
 
 
-        return view('phpsa-analytics::widgets.total-vistitors-and-page', ['data' => $data->reverse(), 'message' => $message]);
+        return view('phpsa-analytics::widgets.total-vistitors-and-page', ['data' => $data->reverse(), 'message' => $message,  'config' => $this->config()]);
     }
 
     protected function topReferrers()
@@ -68,7 +68,7 @@ class Analytics extends Widget
             $message = $e->getMessage();
         }
 
-        return view('phpsa-analytics::widgets.top-referrers', ['data' => $data, 'message' => $message]);
+        return view('phpsa-analytics::widgets.top-referrers', ['data' => $data, 'message' => $message,  'config' => $this->config()]);
     }
 
     protected function topBrowsers()
@@ -98,7 +98,7 @@ class Analytics extends Widget
             $message = $e->getMessage();
         }
 
-        return view('phpsa-analytics::widgets.most-visited-pages', ['data' => $data, 'message' => $message]);
+        return view('phpsa-analytics::widgets.most-visited-pages', ['data' => $data, 'message' => $message,  'config' => $this->config()]);
     }
 
     protected function topCountries()

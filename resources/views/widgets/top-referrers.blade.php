@@ -9,6 +9,48 @@
         </p>
         @endif
         @if ($data)
+        @switch($config['display'] ?? 'table')
+        @case('bar-chart')
+        @case('bar')
+        <bar-chart :chartdata="trChartData" />
+        @break
+
+        @case('line-chart')
+        @case('line')
+        <line-chart :chartdata="trChartData" />
+        @break
+
+        @case('pie-chart')
+        @case('pie')
+        <pie-chart :chartdata="trChartData" />
+        @break
+
+        @case('doughnut-chart')
+        @case('doughnut')
+        <doughnut-chart :chartdata="trChartData" />
+        @break
+
+        @case('radar-chart')
+        @case('radar')
+        <radar-chart :chartdata="trChartData" />
+        @break
+
+        @case('polar-chart')
+        @case('polar')
+        <polar-chart :chartdata="trChartData" />
+        @break
+
+        @case('bubble-chart')
+        @case('bubble')
+        <bubble-chart :chartdata="trChartData" />
+        @break
+
+        @case('scatter-chart')
+        @case('scatter')
+        <scatter-chart :chartdata="trChartData" />
+        @break
+
+        @default
         <table class="data-table">
             <thead>
                 <tr>
@@ -29,7 +71,24 @@
 
             </tbody>
         </table>
+        @endswitch
         @endif
     </div>
 
 </div>
+
+<script>
+    const trChartData = {
+        labels: {!! json_encode($data->pluck("url")) !!},
+    datasets: [
+    {
+    label: "Views",
+    data: {!! json_encode($data->pluck("pageViews"))!!},
+
+    }]
+        };
+
+
+
+
+</script>

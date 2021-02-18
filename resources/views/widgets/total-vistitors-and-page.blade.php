@@ -9,6 +9,48 @@
         </p>
         @endif
         @if ($data)
+        @switch($config['display'] ?? 'table')
+        @case('bar-chart')
+        @case('bar')
+        <bar-chart :chartdata="tvpChartData" />
+        @break
+
+        @case('line-chart')
+        @case('line')
+        <line-chart :chartdata="tvpChartData" />
+        @break
+
+        @case('pie-chart')
+        @case('pie')
+        <pie-chart :chartdata="tvpChartData" />
+        @break
+
+        @case('doughnut-chart')
+        @case('doughnut')
+        <doughnut-chart :chartdata="tvpChartData" />
+        @break
+
+        @case('radar-chart')
+        @case('radar')
+        <radar-chart :chartdata="tvpChartData" />
+        @break
+
+        @case('polar-chart')
+        @case('polar')
+        <polar-chart :chartdata="tvpChartData" />
+        @break
+
+        @case('bubble-chart')
+        @case('bubble')
+        <bubble-chart :chartdata="tvpChartData" />
+        @break
+
+        @case('scatter-chart')
+        @case('scatter')
+        <scatter-chart :chartdata="tvpChartData" />
+        @break
+
+        @default
         <table class="data-table">
             <thead>
                 <tr>
@@ -31,7 +73,33 @@
 
             </tbody>
         </table>
+        @endswitch
         @endif
     </div>
 
 </div>
+
+
+<script>
+    const tvpChartData = {
+        labels: {!! json_encode($data->map(function($row) {
+            $row['date'] = $row['date']->format("Y-m-d");
+            return $row;
+         })->pluck("date")) !!},
+    datasets: [{
+        label: "Visitors",
+        data: {!! json_encode($data->pluck("visitors"))!!},
+
+        },
+    {
+    label: "Views",
+    data: {!! json_encode($data->pluck("pageViews"))!!},
+
+    }]
+        };
+
+
+
+
+
+</script>

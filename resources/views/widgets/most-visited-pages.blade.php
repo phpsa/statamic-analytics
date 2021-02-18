@@ -9,6 +9,48 @@
         </p>
         @endif
         @if ($data)
+        @switch($config['display'] ?? 'table')
+        @case('bar-chart')
+        @case('bar')
+        <bar-chart :chartdata="mvpChartData" />
+        @break
+
+        @case('line-chart')
+        @case('line')
+        <line-chart :chartdata="mvpChartData" />
+        @break
+
+        @case('pie-chart')
+        @case('pie')
+        <pie-chart :chartdata="mvpChartData" />
+        @break
+
+        @case('doughnut-chart')
+        @case('doughnut')
+        <doughnut-chart :chartdata="mvpChartData" />
+        @break
+
+        @case('radar-chart')
+        @case('radar')
+        <radar-chart :chartdata="mvpChartData" />
+        @break
+
+        @case('polar-chart')
+        @case('polar')
+        <polar-chart :chartdata="mvpChartData" />
+        @break
+
+        @case('bubble-chart')
+        @case('bubble')
+        <bubble-chart :chartdata="mvpChartData" />
+        @break
+
+        @case('scatter-chart')
+        @case('scatter')
+        <scatter-chart :chartdata="mvpChartData" />
+        @break
+
+        @default
         <table class="data-table">
             <thead>
                 <tr>
@@ -26,7 +68,24 @@
                 @endforeach
             </tbody>
         </table>
+        @endswitch
         @endif
     </div>
 
 </div>
+
+<script>
+    const mvpChartData = {
+        labels: {!! json_encode($data->pluck("pageTitle")) !!},
+    datasets: [
+    {
+    label: "Views",
+    data: {!! json_encode($data->pluck("pageViews"))!!},
+
+    }]
+        };
+
+
+
+
+</script>
