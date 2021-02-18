@@ -18,7 +18,8 @@ class Analytics extends Widget
         'totalVisitorsAndPageViews',
         'mostVisitedPages',
         'topReferrers',
-        'topBrowsers'
+        'topBrowsers',
+        'topCountries',
     ];
     /**
      * The HTML that should be shown in the widget.
@@ -98,5 +99,28 @@ class Analytics extends Widget
         }
 
         return view('phpsa-analytics::widgets.most-visited-pages', ['data' => $data, 'message' => $message]);
+    }
+
+    protected function topCountries()
+    {
+        $period = Period::days($this->config('days', 30));
+        $result = $message = null;
+        try {
+            $country = GAnalytics::performQuery($period,'ga:sessions',  ['dimensions'=>'ga:country','sort'=>'-ga:sessions']);
+            $result= collect($country['rows'] ?? [])->map(function (array $dateRow) {
+                return [
+                    'country' =>  $dateRow[0],
+                    'sessions' => (int) $dateRow[1],
+                ];
+            });
+        } catch (\Exception $e) {
+            $message = $e->getMessage();
+        }
+
+        return view('phpsa-analytics::widgets.top-countries', [
+            'data' => $result,
+            'message' => $message,
+            'config' => $this->config()
+        ]);
     }
 }

@@ -15,6 +15,10 @@ class ServiceProvider extends AddonServiceProvider
         'cp' => __DIR__.'/../routes/cp.php',
     ];
 
+    protected $scripts = [
+    __DIR__.'/../resources/dist/js/cp.js'
+];
+
     protected $widgets = [
         Analytics::class
     ];
