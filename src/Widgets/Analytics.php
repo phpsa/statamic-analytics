@@ -83,7 +83,7 @@ class Analytics extends Widget
             $message = $e->getMessage();
         }
 
-        return view('phpsa-analytics::widgets.top-browsers', ['data' => $data, 'message' => $message]);
+        return view('phpsa-analytics::widgets.top-browsers', ['data' => $data, 'message' => $message,     'config' => $this->config()]);
     }
 
     protected function mostVisitedPages()
