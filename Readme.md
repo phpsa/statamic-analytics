@@ -41,6 +41,6 @@ If you discover any security related issues, please email vxdhost@gmail.com inst
 
 <img src="https://github.com/phpsa/statamic-analytics/raw/master/example.png" />
 <img src="https://github.com/phpsa/statamic-analytics/raw/master/barchart.png" />
-<img src="https://github.com/phpsa/statamic-analytics/raw/master/doughtnutchart.png" />
+<img src="https://github.com/phpsa/statamic-analytics/raw/master/doughnutchart.png" />
 <img src="https://github.com/phpsa/statamic-analytics/raw/master/linechart.png" />
 <img src="https://github.com/phpsa/statamic-analytics/raw/master/piechart.png" />
