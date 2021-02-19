@@ -14,42 +14,42 @@
         @switch($config['display'] ?? 'table')
         @case('bar-chart')
         @case('bar')
-        <bar-chart :chartdata="tcChartData"  />
+        <bar-chart :chartdata="tcChartData" />
         @break
 
         @case('line-chart')
         @case('line')
-        <line-chart :chartdata="tcChartData"  />
+        <line-chart :chartdata="tcChartData" />
         @break
 
         @case('pie-chart')
         @case('pie')
-        <pie-chart :chartdata="tcChartData"  />
+        <pie-chart :chartdata="tcChartData" />
         @break
 
         @case('doughnut-chart')
         @case('doughnut')
-        <doughnut-chart :chartdata="tcChartData"  />
+        <doughnut-chart :chartdata="tcChartData" />
         @break
 
         @case('radar-chart')
         @case('radar')
-        <radar-chart :chartdata="tcChartData"  />
+        <radar-chart :chartdata="tcChartData" />
         @break
 
         @case('polar-chart')
         @case('polar')
-        <polar-chart :chartdata="tcChartData"  />
+        <polar-chart :chartdata="tcChartData" />
         @break
 
         @case('bubble-chart')
         @case('bubble')
-        <bubble-chart :chartdata="tcChartData"  />
+        <bubble-chart :chartdata="tcChartData" />
         @break
 
         @case('scatter-chart')
         @case('scatter')
-        <scatter-chart :chartdata="tcChartData"  />
+        <scatter-chart :chartdata="tcChartData" />
         @break
 
 
@@ -88,7 +88,7 @@
     </div>
 
 </div>
-
+@if ($data)
 <script>
     const tcChartData = {
         labels: {!! json_encode($data->pluck("country")) !!},
@@ -102,3 +102,4 @@
 
 
 </script>
+@endif;

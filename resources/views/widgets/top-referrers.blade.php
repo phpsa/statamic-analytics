@@ -76,7 +76,7 @@
     </div>
 
 </div>
-
+@if ($data)
 <script>
     const trChartData = {
         labels: {!! json_encode($data->pluck("url")) !!},
@@ -92,3 +92,4 @@
 
 
 </script>
+@endif

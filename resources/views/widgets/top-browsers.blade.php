@@ -77,7 +77,7 @@
 
 </div>
 
-
+@if ($data)
 <script>
     const tbChartData = {
         labels: {!! json_encode($data-> pluck("browser")) !!},
@@ -90,3 +90,4 @@
         };
 
 </script>
+@endif

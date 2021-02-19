@@ -73,7 +73,7 @@
     </div>
 
 </div>
-
+@if ($data)
 <script>
     const mvpChartData = {
         labels: {!! json_encode($data->pluck("pageTitle")) !!},
@@ -89,3 +89,4 @@
 
 
 </script>
+@endif

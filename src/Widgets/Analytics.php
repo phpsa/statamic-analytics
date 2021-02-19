@@ -2,6 +2,8 @@
 
 namespace Phpsa\StatamicAnalytics\Widgets;
 
+use Google\Service\Exception as GoogleException;
+use Exception;
 use Illuminate\Support\Str;
 use Spatie\Analytics\Period;
 use Statamic\Widgets\Widget;
@@ -32,8 +34,7 @@ class Analytics extends Widget
 
         $version = Str::camel($this->config('group', 'most_visited_pages'));
 
-
-        if (!in_array($version, $this->views)) {
+        if (! in_array($version, $this->views)) {
             throw new MethodNotFoundException(__('statamic-analytics::messages.method_not_found', ['widget' => $version]));
         }
 
@@ -48,12 +49,14 @@ class Analytics extends Widget
 
         try {
             $data = GAnalytics::fetchTotalVisitorsAndPageViews($period);
-        } catch (\Exception $e) {
+            $data = $data->reverse();
+        } catch (GoogleException $e) {
+            $message = $this->decodeGoogleException($e);
+        } catch (Exception $e) {
             $message = $e->getMessage();
         }
 
-
-        return view('phpsa-analytics::widgets.total-vistitors-and-page', ['data' => $data->reverse(), 'message' => $message,  'config' => $this->config()]);
+        return view('phpsa-analytics::widgets.total-vistitors-and-page', ['data' => $data, 'message' => $message,  'config' => $this->config()]);
     }
 
     protected function topReferrers()
@@ -64,7 +67,9 @@ class Analytics extends Widget
 
         try {
             $data = GAnalytics::fetchTopReferrers($period, $maxResults);
-        } catch (\Exception $e) {
+        } catch (GoogleException $e) {
+            $message = $this->decodeGoogleException($e);
+        } catch (Exception $e) {
             $message = $e->getMessage();
         }
 
@@ -79,7 +84,9 @@ class Analytics extends Widget
 
         try {
             $data = GAnalytics::fetchTopBrowsers($period, $maxResults);
-        } catch (\Exception $e) {
+        } catch (GoogleException $e) {
+            $message = $this->decodeGoogleException($e);
+        } catch (Exception $e) {
             $message = $e->getMessage();
         }
 
@@ -94,7 +101,9 @@ class Analytics extends Widget
         $maxResults = $this->config('max_results', 10);
         try {
             $data = GAnalytics::fetchMostVisitedPages($period, $maxResults);
-        } catch (\Exception $e) {
+        } catch (GoogleException $e) {
+            $message = $this->decodeGoogleException($e);
+        } catch (Exception $e) {
             $message = $e->getMessage();
         }
 
@@ -106,21 +115,28 @@ class Analytics extends Widget
         $period = Period::days($this->config('days', 30));
         $result = $message = null;
         try {
-            $country = GAnalytics::performQuery($period,'ga:sessions',  ['dimensions'=>'ga:country','sort'=>'-ga:sessions']);
+            $country = GAnalytics::performQuery($period, 'ga:sessions', ['dimensions'=>'ga:country','sort'=>'-ga:sessions']);
             $result= collect($country['rows'] ?? [])->map(function (array $dateRow) {
                 return [
-                    'country' =>  $dateRow[0],
+                    'country'  =>  $dateRow[0],
                     'sessions' => (int) $dateRow[1],
                 ];
             });
-        } catch (\Exception $e) {
+        } catch (GoogleException $e) {
+            $message = $this->decodeGoogleException($e);
+        } catch (Exception $e) {
             $message = $e->getMessage();
         }
 
         return view('phpsa-analytics::widgets.top-countries', [
-            'data' => $result,
+            'data'    => $result,
             'message' => $message,
-            'config' => $this->config()
+            'config'  => $this->config()
         ]);
+    }
+
+    private function decodeGoogleException(GoogleException $e): string
+    {
+        return current($e->getErrors())['message'];
     }
 }

@@ -79,7 +79,7 @@
 
 </div>
 
-
+@if ($data)
 <script>
     const tvpChartData = {
         labels: {!! json_encode($data->map(function($row) {
@@ -98,8 +98,5 @@
     }]
         };
 
-
-
-
-
 </script>
+@endif
