@@ -30,6 +30,7 @@ Add Google Analytics reporting to the control panel of your Statamic 3 site!
 - Configure Google Analytics ID
 - Tracking settings including debug & user tracking
 - Add tracking to your theme with one line of code
+- View individual page views / visitors when editing page in cp
 
 **[Installation / Documentation](https://statamic-plugins.cgs4k.nz/docs/3.x/analytics)**
 
@@ -44,3 +45,4 @@ If you discover any security related issues, please email vxdhost@gmail.com inst
 <img src="https://github.com/phpsa/statamic-analytics/raw/master/doughnutchart.png" />
 <img src="https://github.com/phpsa/statamic-analytics/raw/master/linechart.png" />
 <img src="https://github.com/phpsa/statamic-analytics/raw/master/piechart.png" />
+<img src="https://github.com/phpsa/statamic-analytics/raw/master/cp_edit.png" />

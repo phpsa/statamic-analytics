@@ -7,7 +7,7 @@ use Statamic\Facades\Config;
 use Statamic\Facades\Site;
 use Statamic\View\View;
 
-Class Tracking extends Tags
+class Tracking extends Tags
 {
 
     protected static $handle = 'ga';
@@ -16,28 +16,26 @@ Class Tracking extends Tags
     public function index()
     {
         $tracking_id = str_replace(' ', '', $this->getConfig('tracking_id', ''));
-        if(empty($tracking_id)){
-             return '<!-- Google Analytics Tracking code is not setup yet! -->';
+        if (empty($tracking_id)) {
+            return '<!-- Google Analytics Tracking code is not setup yet! -->';
         }
 
-       return View::make(
-        'statamic-analytics::tracking-code'
-        )->with( [
-          'tracking_id' => $tracking_id,
-          'anonymize_ip' => $this->getConfig('anonymize_ip', false),
-          'async' => $this->getConfig('async', false),
-          'display_features' => $this->getConfig('display_features', false),
-          'link_id' => $this->getConfig('link_id', false),
-          'beacon' => $this->getConfig('beacon', false),
-          'track_uid' => $this->getConfig('track_uid', false),
-          'ignore_admins' => $this->getConfig('ignore_admins', false),
-          'user' => $this->getConfig('track_uid', false) ? User::getCurrent() : false,
-          'debug' => $this->getConfig('debug', false),
-          'trace_debugging' => $this->getConfig('trace_debugging', false),
-          'disable_sending' => $this->getConfig('disable_sending', false),
+        return View::make(
+            'statamic-analytics::tracking-code'
+        )->with([
+            'tracking_id'      => $tracking_id,
+            'anonymize_ip'     => $this->getConfig('anonymize_ip', false),
+            'async'            => $this->getConfig('async', false),
+            'display_features' => $this->getConfig('display_features', false),
+            'link_id'          => $this->getConfig('link_id', false),
+            'beacon'           => $this->getConfig('beacon', false),
+            'track_uid'        => $this->getConfig('track_uid', false),
+            'ignore_admins'    => $this->getConfig('ignore_admins', false),
+            'user'             => $this->getConfig('track_uid', false) ? User::getCurrent() : false,
+            'debug'            => $this->getConfig('debug', false),
+            'trace_debugging'  => $this->getConfig('trace_debugging', false),
+            'disable_sending'  => $this->getConfig('disable_sending', false),
         ])->render();
-
-
     }
 
 
@@ -49,11 +47,11 @@ Class Tracking extends Tags
         $conf = $config->get($site);
         $main = $config->get('default');
 
-        if(isset($conf[$key])){
+        if (isset($conf[$key])) {
             return $conf[$key];
         }
 
-        if(isset($main[$key])){
+        if (isset($main[$key])) {
             return $main[$key];
         }
 

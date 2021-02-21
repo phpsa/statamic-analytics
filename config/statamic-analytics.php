@@ -14,6 +14,7 @@ return [
             'debug' => env('PHPSA_SA_DEBUG', false),
             'trace_debugging' => env('PHPSA_SA_TRACE_DEBUGGING', false),
             'disable_sending' => env('PHPSA_SA_DISABLE_SENDING', false),
+            'page_graph' => env('PHPSA_PAGE_GRAPH', false)
         ]
     ]
 ];
