@@ -1,4 +1,5 @@
 <?php
+
 namespace Phpsa\StatamicAnalytics\Actions;
 
 use Statamic\Entries\Entry;
@@ -19,8 +20,6 @@ class PageGraph extends Controller
             return [];
         }
         $url = $entry->url();
-
-        $url = '/how-to-write-an-effective-radio-proposal';
 
         $key = 'ga_stats_' . $url;
 
